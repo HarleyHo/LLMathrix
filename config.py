@@ -9,9 +9,9 @@ class Config:
     prompt_types: [] = None
     models: Dict[str, str] = None
     datasets: Dict[str, tuple] = None
-    judge_api_key: str = "sk-Ncp7i7NTFB9kD90ah9a7iOxCowh9xAe94yTSTcXFZ2c9WYu6"
-    judge_base_url: str = "https://api.nuwaapi.com/v1"
-    test_api_key: str = "sk-862221a70b5a4731afcf137853d0208b"
+    judge_api_key: str = ""  # GPT-4o key
+    judge_base_url: str = ""  # GPT-4o url
+    test_api_key: str = ""  # 百炼api(Mathematical LLM)
     test_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     dataset_dir: str = "datasets"
     checkpoint_dir: str = "checkpoints"
