@@ -1,8 +1,10 @@
 # inference.py
+import sys
 from typing import Optional
 from openai import OpenAI
 import logging
 
+from utils import CompletionError
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +22,7 @@ def generate_completion(client: OpenAI, model: str, system_prompt: str, user_pro
         return completion.choices[0].message.content
     except Exception as e:
         logger.error(f"Failed to generate completion: {e}")
+        raise CompletionError(f"Failed to generate completion: {str(e)}") from e
 
 
 def direct_answer(question: str, client: OpenAI, model: str) -> Optional[str]:
