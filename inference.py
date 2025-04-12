@@ -220,7 +220,10 @@ def self_consistency(
                 selected_response = most_common[0][0]
         else:
             logger.debug(f"Self-Consistency voting result: {voting_response}")
-            selected_response = voting_response
+            for i, resp in enumerate(responses):
+                if f"Solution {i + 1}" in resp:
+                    selected_response = resp
+                    break
 
         # Fallback if no specific solution was selected
         if not selected_response:
