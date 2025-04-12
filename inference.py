@@ -1,5 +1,6 @@
 # inference.py
 import json
+import re
 from typing import Optional
 from collections import Counter
 from openai import OpenAI
@@ -151,7 +152,7 @@ def self_consistency(
         judge_client: OpenAI,
         judge_model: str = "gpt-4o",
         num_attempts: int = 5,
-        temperature: float = 0.7,
+        temperature: float = 1,
         judge_temperature: float = 0
 ) -> Optional[str]:
     """
@@ -193,11 +194,10 @@ def self_consistency(
 
         # Use GPT-4o to vote for the most consistent answer
         voting_prompt = (
-                f"Question: {question}\n"
                 f"Multiple solutions were generated:\n"
                 + "\n".join([f"Solution {i + 1}: {resp}" for i, resp in enumerate(responses)])
                 + "\nPlease analyze these solutions to identify the answer that appears most frequently. "
-                  "Return the index of the solution that contains the most frequent answer in the format: **Final Answer**: Solution [Your chosen index]\n"
+                  "Return the index of the first solution that contains the most frequent answer in the format: **Final Answer**: Solution [Your chosen index]\n"
         )
         voting_response = generate_completion(
             client=judge_client,
@@ -220,10 +220,12 @@ def self_consistency(
                 selected_response = most_common[0][0]
         else:
             logger.debug(f"Self-Consistency voting result: {voting_response}")
-            for i, resp in enumerate(responses):
-                if f"Solution {i + 1}" in resp:
-                    selected_response = resp
-                    break
+            match = re.search(r"\*\*Final Answer\*\*: Solution (\d+)", voting_response)
+            if match:
+                number = int(match.group(1)) - 1
+            else:
+                number = 0
+            selected_response = responses[number]
 
         # Fallback if no specific solution was selected
         if not selected_response:
