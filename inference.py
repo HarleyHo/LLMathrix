@@ -179,8 +179,7 @@ def self_consistency(
                 f"Question: {question}\n"
                 f"Multiple solutions were generated:\n"
                 + "\n".join([f"Solution {i + 1}: {resp}" for i, resp in enumerate(responses)])
-                + "\nPlease analyze these solutions and select the most consistent(AttributeError: 'NoneType' object has no attribute 'split')"
-                  f"Choose the most consistent and correct solution. Provide a brief explanation for your choice.\n"
+                + "\nPlease analyze these solutions and choose the most consistent and correct solution.\n"
                   f"Answer with the format: **Final Answer**: [Your chosen solution]\n"
         )
         voting_response = generate_completion(
