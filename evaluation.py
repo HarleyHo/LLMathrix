@@ -48,7 +48,7 @@ def judge_response(
         logger.debug(f"Pattern matching succeeded: Predicted '{predicted_answer}' matches true '{true_answer_str}'.")
         return True, False
 
-    logger.warning(
+    logger.info(
         f"Pattern matching failed: Predicted '{predicted_answer}' does not match true '{true_answer_str}'. "
         f"Falling back to Judge LLM {judge_model}."
     )
