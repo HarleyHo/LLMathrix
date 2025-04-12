@@ -14,7 +14,8 @@ def judge_response(
         response: Optional[str],
         true_answer: str,
         judge_client: OpenAI,
-        judge_model: str = "gpt-4o"
+        judge_model: str = "gpt-4o",
+        temperature: float = 0
 ) -> tuple[bool, bool]:
     """
     Judge if a response is equivalent to the true answer, first using pattern matching, then GPT-4o if needed.
@@ -65,7 +66,7 @@ def judge_response(
     )
 
     from inference import generate_completion
-    judge_result = generate_completion(judge_client, judge_model, system_prompt, user_prompt)
+    judge_result = generate_completion(judge_client, judge_model, system_prompt, user_prompt, temperature)
     if judge_result is None:
         logger.error("GPT-4o judgment failed: No result returned.")
         return False, True
@@ -174,7 +175,6 @@ def save_evaluation_results(results: Dict, config: 'Config', file_name="results"
                 })
 
     df_results = pd.DataFrame(result_rows)
-    os.makedirs(config.eval_result_dir, exist_ok=True)
     output_file = os.path.join(config.eval_result_dir, f"{file_name}.csv")
 
     if os.path.exists(output_file):

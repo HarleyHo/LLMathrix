@@ -1,6 +1,5 @@
-# data_processing.py
+# data_preprocessing.py
 import os
-from typing import Dict
 from config import Config
 import pandas as pd
 from datasets import load_dataset
@@ -32,10 +31,12 @@ def save_preprocessed_datasets(config: 'Config') -> None:
     """Save preprocessed datasets to CSV files."""
     os.makedirs(config.dataset_dir, exist_ok=True)
     os.makedirs(config.checkpoint_dir, exist_ok=True)
+    os.makedirs(config.eval_result_dir, exist_ok=True)
 
     for dataset_name, dataset_config in config.datasets.items():
         dataset_dir = os.path.join(config.dataset_dir, dataset_name)
         checkpoint_dir = os.path.join(config.checkpoint_dir, dataset_name)
+
         os.makedirs(dataset_dir, exist_ok=True)
         os.makedirs(checkpoint_dir, exist_ok=True)
 
