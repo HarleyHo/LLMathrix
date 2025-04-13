@@ -26,7 +26,7 @@ def setup_logging(log_file: str = "task.log") -> logging.Logger:
     console_handler.setFormatter(log_format)
 
     # File handler for output to a file
-    file_handler = logging.FileHandler(log_file, mode='a', encoding='utf-8')
+    file_handler = logging.FileHandler(log_file, mode='w', encoding='utf-8')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(log_format)
 
