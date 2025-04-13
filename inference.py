@@ -5,6 +5,7 @@ from typing import Optional
 from collections import Counter
 from openai import OpenAI
 import logging
+from dashscope import Assistants, Threads, Runs
 
 from utils import CompletionError
 
@@ -27,8 +28,21 @@ def generate_completion(
                 {"role": "user", "content": user_prompt}
             ],
             temperature=temperature,
+            stream=True
         )
-        return completion.choices[0].message.content
+
+        collected_chunks = []
+        collected_messages = []
+        # iterate through the stream of events
+        for chunk in completion:
+            collected_chunks.append(chunk)  # save the event response
+            chunk_message = chunk.choices[0].delta.content  # extract the message
+            if chunk_message is not None:
+                collected_messages.append(chunk_message)  # save the message
+
+        # print the time delay and text received
+        full_reply_content = ''.join(collected_messages)
+        return full_reply_content
     except Exception as e:
         logger.error(f"Failed to generate completion: {e}")
         raise CompletionError(f"Failed to generate completion: {e}") from e
@@ -65,6 +79,7 @@ def chain_of_thought(question: str, client: OpenAI, model: str, temperature: flo
         f"Solve the problem step by step."
     )
     response = generate_completion(client, model, system_prompt, user_prompt, temperature)
+
     if response:
         logger.debug(f"COT response for question '{question[:50]}...': {response}")
     return response
@@ -152,7 +167,7 @@ def self_consistency(
         judge_client: OpenAI,
         judge_model: str = "gpt-4o",
         num_attempts: int = 5,
-        temperature: float = 1,
+        temperature: float = 1.99,
         judge_temperature: float = 0
 ) -> Optional[str]:
     """
