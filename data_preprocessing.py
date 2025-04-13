@@ -5,7 +5,7 @@ import pandas as pd
 from datasets import load_dataset
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("my_logger")
 
 
 def preprocess_dataset(name: str, dataset_config: tuple) -> pd.DataFrame:

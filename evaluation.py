@@ -7,7 +7,7 @@ from openai import OpenAI
 import logging
 from config import Config
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("my_logger")
 
 
 def judge_response(

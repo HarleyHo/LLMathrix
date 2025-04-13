@@ -5,11 +5,10 @@ from typing import Optional
 from collections import Counter
 from openai import OpenAI
 import logging
-from dashscope import Assistants, Threads, Runs
 
 from utils import CompletionError
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("my_logger")
 
 
 def generate_completion(
@@ -31,11 +30,10 @@ def generate_completion(
             stream=True
         )
 
-        collected_chunks = []
         collected_messages = []
         # iterate through the stream of events
         for chunk in completion:
-            collected_chunks.append(chunk)  # save the event response
+            logger.debug(f"Chunk: {chunk}")
             chunk_message = chunk.choices[0].delta.content  # extract the message
             if chunk_message is not None:
                 collected_messages.append(chunk_message)  # save the message
