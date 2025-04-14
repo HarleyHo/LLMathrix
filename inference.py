@@ -43,7 +43,8 @@ def generate_completion(
         return full_reply_content
     except Exception as e:
         logger.error(f"Failed to generate completion: {e}")
-        raise CompletionError(f"Failed to generate completion: {e}") from e
+        # raise CompletionError(f"Failed to generate completion: {e}") from e
+        return None
 
 
 def direct_answer(question: str, client: OpenAI, model: str, temperature: float = 0) -> Optional[str]:
@@ -165,7 +166,7 @@ def self_consistency(
         judge_client: OpenAI,
         judge_model: str = "gpt-4o",
         num_attempts: int = 5,
-        temperature: float = 1.99,
+        temperature: float = 1.5,
         judge_temperature: float = 0
 ) -> Optional[str]:
     """
