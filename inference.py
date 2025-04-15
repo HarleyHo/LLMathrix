@@ -227,7 +227,7 @@ def self_consistency(
         selected_response = None
 
         if not voting_response:
-            logger.error("Self-Consistency voting failed: No response from judge.")
+            logger.error("Self-Consistency voting failed: No response from voting LLM.")
             # Fallback: select the most common response
             most_common = Counter(responses).most_common(1)
             if most_common:
