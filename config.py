@@ -1,6 +1,7 @@
 # config.py
 from dataclasses import dataclass
 from typing import Dict
+import os
 
 
 @dataclass
@@ -9,10 +10,10 @@ class Config:
     prompt_types: [] = None
     models: Dict[str, str] = None
     datasets: Dict[str, tuple] = None
-    judge_api_key: str = ""  # GPT-4o key
-    judge_base_url: str = ""  # GPT-4o url
-    test_api_key: str = ""  # 百炼api(Mathematical LLM)
-    test_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    judge_api_key: str = os.environ["JUDGE_API_KEY"]
+    judge_base_url: str = os.environ["JUDGE_API_BASE_URL"]
+    test_api_key: str = os.environ["BAILIAN_API_KEY"]
+    test_base_url: str = os.environ["BAILIAN_API_BASE_URL"]
     dataset_dir: str = "datasets"
     checkpoint_dir: str = "checkpoints"
     eval_result_dir: str = "evaluation_results"
