@@ -43,6 +43,7 @@ After all these steps, simply run the following command:
 
 ## Results
 ![img.png](img.png)
-From the table we can see that with the level of difficulty, the accuracy of the LLM's predictions decreases. Different approaches can help improve the accuracy of the LLM's predictions, and the best approach is **self-consistency**.
+
+From Table 1 we can see that with the level of difficulty, the accuracy of the LLM's predictions decreases. Different approaches can help improve the accuracy of the LLM's predictions, and the best approach is **self-consistency**.
 
 But all in all, the best approach is to use a more powerful model :joy:.
