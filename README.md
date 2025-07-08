@@ -2,6 +2,7 @@
 LLMathrix is a testing framework for evaluating the mathematical ability of Large Language Models (LLMs). 
 It uses a set of mathematical tasks and questions with different levels of difficulty to test the LLM's ability to perform complex mathematical calculations and solve problems.
 
+This is a course project of CS6493 at City University of Hong Kong.
 ## Approach
 Rather than fine-tuning the LLM, in this framework we try to use a more easy approach to evaluate the LLM's ability to perform mathematical tasks, and that's **Prompt Engineering**. Each LLM are tested by three different methods, including
 **chain of thought (CoT)**, **self-refine**, and **self-consistency**.
