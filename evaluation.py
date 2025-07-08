@@ -21,6 +21,7 @@ def judge_response(
     Judge if a response is equivalent to the true answer, first using pattern matching, then GPT-4o if needed.
 
     Args:
+        temperature:
         response (Optional[str]): Generated response.
         true_answer (str): Ground truth answer.
         judge_client (OpenAI): GPT-4 API client.

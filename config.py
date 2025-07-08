@@ -7,7 +7,7 @@ import os
 @dataclass
 class Config:
     """Configuration for models, prompts, datasets, and API clients."""
-    prompt_types: [] = None
+    prompt_types: list = None
     models: Dict[str, str] = None
     datasets: Dict[str, tuple] = None
     judge_api_key: str = os.environ["JUDGE_API_KEY"]

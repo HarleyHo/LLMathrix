@@ -6,8 +6,6 @@ from collections import Counter
 from openai import OpenAI
 import logging
 
-from utils import CompletionError
-
 logger = logging.getLogger("my_logger")
 
 
@@ -20,6 +18,7 @@ def generate_completion(
 ) -> Optional[str]:
     """Generate a completion using the specified client and model."""
     try:
+        # noinspection PyTypeChecker
         completion = client.chat.completions.create(
             model=model,
             messages=[
@@ -89,6 +88,7 @@ def self_refine(question: str, client: OpenAI, model: str, temperature: float = 
     Execute a three-stage Self-Refine process.
 
     Args:
+        temperature:
         question (str): The math problem to solve.
         client (OpenAI): API client.
         model (str): Model name.
@@ -173,6 +173,8 @@ def self_consistency(
     Generate an answer using Self-Consistency: generate multiple COT responses and vote for the final answer.
 
     Args:
+        temperature:
+        judge_temperature:
         question (str): The math problem to solve.
         client (OpenAI): API client for generating responses.
         model (str): Model name for generating responses.
