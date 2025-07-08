@@ -21,7 +21,7 @@ Evaluation is performed by calculating the accuracy of the LLM's predictions. We
 
 However, as said before, the parameters of the models are small, so the answer the LLM gives is not always exactly the same as the ground truth, and by simply **pattern matching**, it sometimes gives a wrong result, that is, the answer is right but the matching result says it is wrong.
 
-eg. the answer the LLM gives is *so the answer is 1 + 1 = 2*, but the ground truth id simply *2*, so with pattern matching, it will say the answer is wrong.
+eg. the answer the LLM gives is *so the answer is 1 + 1 = 2*, but the ground truth is simply *2*, so with pattern matching, it will say the answer is wrong.
 
 So besides pattern matching, we also use a lagre parameter model, called **judge LLM**, to judge the answer the Mathematical LLM gives and compare with the ground truth.
 We choose [ChatGPT-4o](https://openai.com/index/hello-gpt-4o/) for our judge LLM. The judge LLM can judge the answer like in the example and gives the correct judge result.
@@ -42,3 +42,4 @@ After all these steps, simply run the following command:
 ```python main.py```
 
 ## Results
+![img.png](img.png)
