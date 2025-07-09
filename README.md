@@ -10,7 +10,7 @@ Rather than fine-tuning the LLM, in this framework we try to use a more easy app
 ## LLM
 Two LLMs are used, [Qwen2.5-Math-1.5B](https://bailian.console.aliyun.com/?tab=model#/model-market/detail/qwen2.5-math-1.5b-instruct) and [DeepSeek-R1-Qwen-1.5B](https://bailian.console.aliyun.com/?tab=model#/efm/model_experience_center/text?currentTab=textChat&modelId=deepseek-r1-distill-qwen-1.5b).
 
-The first model is fine-tuning with a large amount of mathematical tasks and questions, and the second model is a distilled model but for general questions. They both have a small number of parameters, so the mathematical ability of these models should be comparable and the effect the prompt engineering has on the model's performance should be significant.
+The first model is fine-tune with a large amount of mathematical tasks and questions, and the second model is a distilled model but for general questions. They both have a small number of parameters, so the mathematical ability of these models should be comparable and the effect the prompt engineering has on the model's performance should be significant.
 
 ## Datasets
 We use a set of mathematical tasks and questions with different levels of difficulty to test the LLM's ability to perform complex mathematical calculations and solve problems.
