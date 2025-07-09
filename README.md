@@ -4,11 +4,11 @@ It uses a set of mathematical tasks and questions with different levels of diffi
 
 This is a course project of CS6493 at City University of Hong Kong.
 ## Approach
-Rather than fine-tune the LLM, in this framework we try to use a more easy approach to evaluate the LLM's ability to perform mathematical tasks, and that's **Prompt Engineering**. Each LLM are tested by three different methods, including
+Rather than fine-tune the LLM, in this framework we try to use a more easy approach to evaluate the LLM's ability to perform mathematical tasks, and that's **Prompt Engineering**. Each model are tested by three different methods, including
 **chain of thought (CoT)**, **self-refine**, and **self-consistency**.
 
-## LLM
-Two LLMs are used, [Qwen2.5-Math-1.5B](https://bailian.console.aliyun.com/?tab=model#/model-market/detail/qwen2.5-math-1.5b-instruct) and [DeepSeek-R1-Qwen-1.5B](https://bailian.console.aliyun.com/?tab=model#/efm/model_experience_center/text?currentTab=textChat&modelId=deepseek-r1-distill-qwen-1.5b).
+## Models
+Two models are used, [Qwen2.5-Math-1.5B](https://bailian.console.aliyun.com/?tab=model#/model-market/detail/qwen2.5-math-1.5b-instruct) and [DeepSeek-R1-Qwen-1.5B](https://bailian.console.aliyun.com/?tab=model#/efm/model_experience_center/text?currentTab=textChat&modelId=deepseek-r1-distill-qwen-1.5b).
 
 The first model is fine-tuning with a large amount of mathematical tasks and questions, and the second model is a distilled model but for general questions. They both have a small number of parameters, so the mathematical ability of these models should be comparable and the effect the prompt engineering has on the model's performance should be significant.
 
@@ -18,7 +18,7 @@ The datasets are from Hugging Face, and they are [GSM8K](https://huggingface.co/
 The difficulty level of these datasets varies from easy to hard, and the number of tasks and questions in each dataset varies.
 
 ## Evaluation
-Evaluation is performed by calculating the accuracy of the LLM's predictions. We compare the answer the LLM gives under different methods to the ground truth answer to get if the LLM's prediction is correct.
+Evaluation is performed by calculating the accuracy of the LLM's predictions. We compare the answer the LLM gives under different methods to the ground truth answer to get if the model's prediction is correct.
 
 However, as said before, the parameters of the models are small, so the answer the LLM gives is not always exactly the same as the ground truth, and by simply **pattern matching**, it sometimes gives a wrong result, that is, the answer is right but the matching result says it is wrong.
 
