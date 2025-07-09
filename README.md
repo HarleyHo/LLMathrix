@@ -48,3 +48,9 @@ After all these steps, simply run the following command:
 From Table 1 we can see that with the level of difficulty, the accuracy of the LLM's predictions decreases. Different approaches can help improve the accuracy of the LLM's predictions, and the best approach is **self-consistency**.
 
 But all in all, the best approach is to use a more powerful model :joy:.
+
+## Dependencies
+- [X] Numpy
+- [X] Pandas
+- [X] Hugging Face Datasets
+- [X] OpenAI
